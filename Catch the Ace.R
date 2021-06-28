@@ -1,7 +1,7 @@
 ### A simplified version of Catch (Chase) the Ace! ###
 
 # Author: Jarrett D. Phillips
-# Last updated: May 30, 2020
+# Last updated: June 28, 2021
 
 # Clear memory
 
@@ -80,18 +80,16 @@ catch.ace <- function(ticket.price, max.num.tickets) {
     payoff <- tickets * ticket.price # ticket sales
     jackpot <- jackpot + (0.30 * payoff) # update weekly winnings; 30% of ticket sales goes into jackpot
     
+    cat("\n \n Week: ", week,
+        "\n Ticket number: ", pick.ticket,
+        "\n Card selected: ", pick.envelope)
+    
     if ("Ace of Spades" %in% pick.envelope) {
-      cat("\n \n Week: ", week,
-          "\n Ticket number: ", pick.ticket,
-          "\n Card selected: ", pick.envelope, 
-          "\n Outcome: Congratulations, you've selected the Ace of Spades! You've won the progressive jackpot! \n Payoff: $", jackpot,
+      cat("\n Outcome: Congratulations, you've selected the Ace of Spades! You've won the progressive jackpot! \n Payoff: $", jackpot,
           "\n Proceeds donated to charity: $", (0.50 * payoff)) # 50% of all ticket sales goes to charity
       break
       } else {
-        cat("\n \n Week: ", week,
-            "\n Ticket number: ", pick.ticket,
-            "\n Card selected: ", pick.envelope, 
-            "\n Outcome: Sorry, you didn't select the Ace of Spades! Better luck next time! \n Payoff: $", (0.20 * payoff), # 20% of ticket sales goes to winning ticket holder each week
+        cat("\n Outcome: Sorry, you didn't select the Ace of Spades! Better luck next time! \n Payoff: $", (0.20 * payoff), # 20% of ticket sales goes to winning ticket holder each week
             "\n Proceeds donated to charity: $", (0.50 * payoff))  
         }
       }
@@ -102,6 +100,6 @@ catch.ace <- function(ticket.price, max.num.tickets) {
 ## Let's play!
 
 ticket.price <- 5 # price per ticket
-max.num.tickets <- 500 # maximum number of tickets sold
+max.num.tickets <- 5000 # maximum number of tickets sold
 
 catch.ace(ticket.price, max.num.tickets)
