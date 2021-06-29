@@ -65,7 +65,7 @@ cards <- c("Ace of Clubs",
 
 ## Simulation
 
-catch.ace <- function(ticket.price, max.num.tickets) {
+catch.ace <- function(ticket.price = ticket.price, max.num.tickets = max.num.tickets) {
   week <- 0 # initialize counter
   payoff <- 0 # initialize weekly winnings
   jackpot <- 0 # initialize progressive jackpot
@@ -85,16 +85,24 @@ catch.ace <- function(ticket.price, max.num.tickets) {
         "\n Card selected: ", pick.envelope)
     
     if ("Ace of Spades" %in% pick.envelope) {
-      cat("\n Outcome: Congratulations, you've selected the Ace of Spades! You've won the progressive jackpot! \n Payoff: $", jackpot,
-          "\n Proceeds donated to charity: $", (0.50 * payoff)) # 50% of all ticket sales goes to charity
+      cat("\n Outcome: Congratulations, you've selected the Ace of Spades! You've won the progressive jackpot! \n Jackpot: $",jackpot, "\n \n") # 50% of all ticket sales goes to charity
       break
       } else {
-        cat("\n Outcome: Sorry, you didn't select the Ace of Spades! Better luck next time! \n Payoff: $", (0.20 * payoff), # 20% of ticket sales goes to winning ticket holder each week
-            "\n Proceeds donated to charity: $", (0.50 * payoff))  
-        }
+        cat("\n Outcome: Sorry, you didn't select the Ace of Spades! Better luck next time! \n Payoff: $", (0.20 * payoff)) # 20% of ticket sales goes to winning ticket holder each week  
       }
-      cards <- cards # reset deck
+    
+    cat("\n Proceeds donated to charity: $",(0.50 * payoff), "\n \n")
+    
     }
+    cards <- cards # reset deck
+    return(list("week" = week,
+                "payoff" = payoff,
+                "jackpot" = jackpot,
+                "tickets" = tickets,
+                "fill.envelopes" = fill.envelopes,
+                "pick.ticket" = pick.ticket,
+                "pick.envelope" = pick.envelope))
+  }
 
 
 ## Let's play!
@@ -102,4 +110,4 @@ catch.ace <- function(ticket.price, max.num.tickets) {
 ticket.price <- 5 # price per ticket
 max.num.tickets <- 5000 # maximum number of tickets sold
 
-catch.ace(ticket.price, max.num.tickets)
+catch.ace(ticket.price = ticket.price, max.num.tickets = max.num.tickets)
